@@ -4,7 +4,8 @@
   "version": "0.1",
   "page_action": {
     "default_icon": "page-icon.png",
-    "default_title": "Page Action Hello World"
+    "default_title": "Page Action Hello World",
+    "default_popup": "popup.html"
   },
   "permissions": [
     "tabs"
