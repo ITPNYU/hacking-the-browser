@@ -1,0 +1,15 @@
+This extension example requires that you have a socket server running on your computer.
+There is code for a node.js server in `socket-backend/`.
+
+To run the server locally:
+
+  * ensure you have `node` and `npm` installed on your machine
+  * use the terminal to navigate to the `socket-backend/` folder
+  * install the node dependencies by typing `npm install`
+  * start the server: `node server.js`
+
+
+**After** your socket server is running, your extension will work. Install it in
+Chrome and you should see a log message in Chrome's console and a corresponding
+log message in the terminal console that shows a message being sent from the server
+to the extension and back.
