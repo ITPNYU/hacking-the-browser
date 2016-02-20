@@ -42,7 +42,7 @@ function renderPixi() {
   console.log('renderPixi!');
 
   // Set up the renderer
-  renderer = new PIXI.CanvasRenderer(19, 19,{backgroundColor : 0xFFFFFF});
+  renderer = new PIXI.CanvasRenderer(19, 19,{backgroundColor : 0x0000FF});
   renderer.view.id = 'pixi-canvas';
   document.body.appendChild(renderer.view);
 
