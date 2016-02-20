@@ -8,6 +8,6 @@
     "default_title": "Animated Browser Action With Pixi.js"
   },
   "background": {
-    "page": "background.html"
+    "scripts": ["pixi.min.js", "background.js"]
   }
 }
