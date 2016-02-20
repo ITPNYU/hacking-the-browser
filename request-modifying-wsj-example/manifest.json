@@ -1,0 +1,27 @@
+{
+  "name": "Web Request Modifying Headers example",
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Changes referer and user-agent to google, blocks cookies for sites with online paywalls. All code is from: http://elaineou.com/2016/02/19/how-to-use-chrome-extensions-to-bypass-paywalls/",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "http://www.ft.com/*",
+    "http://www.wsj.com/*",
+    "https://www.wsj.com/*",
+    "http://www.economist.com/*",
+    "http://www.nytimes.com/*",
+    "https://hbr.org/*",
+    "http://www.newyorker.com/*",
+    "http://www.forbes.com/*",
+    "http://online.barrons.com/*",
+    "http://www.barrons.com/*",
+    "http://www.investingdaily.com/*",
+    "http://realmoney.thestreet.com/*",
+    "http://www.washingtonpost.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
