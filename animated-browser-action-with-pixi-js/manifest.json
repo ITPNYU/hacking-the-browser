@@ -1,0 +1,13 @@
+{
+  "name": "Animated Browser Action Hello World",
+  "description": "Uses Pixi.js and canvas to create an animated image for the browser action when clicked",
+  "manifest_version": 2,
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "rose-19x19.png",
+    "default_title": "Animated Browser Action"
+  },
+  "background": {
+    "page": "background.html"
+  }
+}

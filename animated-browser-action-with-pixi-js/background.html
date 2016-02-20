@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <script src="pixi.min.js"></script>
+    <script src="background.js"></script>
+  </head>
+  <body>
+    <!-- This background HTML page is here because the background.js
+         file needs a DOM for it to use with Pixi to render the spinning
+         rose.
+
+         When the background script runs `renderPixi()` it will add a 
+         canvas with id "pixi-canvas" to this body. The code later reads
+         the image data out of that canvas to update the icon.
+    -->
+  </body>
+</html>
