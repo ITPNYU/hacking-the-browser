@@ -1,4 +1,4 @@
-console.log('Background page version 1');
+console.log('Page Action background page version 1');
 
 // This listener is called when a tab becomes active
 // in a window (e.g. the user clicks on the tab icon)
