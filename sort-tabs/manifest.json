@@ -1,10 +1,14 @@
 {
   "name": "Sort Tabs Example",
   "manifest_version": 2,
+  "short_name": "Sort Tabs",
   "version": "0.1",
   "browser_action": {
-    "default_icon": "sort-by-alphabet.png",
+    "default_icon": "sort-128.png",
     "default_title": "Sort Tabs Example"
+  },
+  "icons": {
+    "128": "sort-128.png"
   },
   "permissions": [
     "tabs"
