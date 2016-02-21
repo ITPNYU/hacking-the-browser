@@ -4,7 +4,7 @@
 //
 // So you can safely use jQuery (the `$`) in the code below
 
-console.log("Hello, world! (from a content script) (version: 1)");
+console.log('Hello, world! (from a content script) (version: 1)');
 
 // change all paragraphs to red:
-// $('p').css({'color': 'red'});
+$('p').css({'color': 'red'});
