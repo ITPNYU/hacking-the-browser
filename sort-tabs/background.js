@@ -37,6 +37,11 @@ chrome.browserAction.onClicked.addListener(function() {
     });
 
     // Shows the text "Sorted!" on the icon
-    chrome.browserAction.setBadgeText({text: 'Sorted!'});
+    chrome.browserAction.setBadgeText({text: 'Done!'});
+
+    setTimeout(function() {
+      // Clears out the badge text for next time
+      chrome.browserAction.setBadgeText({text: ''});
+    }, 2000);
   });
 });
