@@ -2,7 +2,7 @@
   "name": "NCAA Basketball Stats Analyzer",
   "manifest_version": 2,
   "description": "Analyzes stats for mens NCAA Basketball teams on *schedule pages* for bracket building at sports-reference.com. Icon from www.freepik.com",
-  "version": "0.1",
+  "version": "0.2",
   "icons": {
     "128": "ball.png"
   },
@@ -10,11 +10,14 @@
     "matches": [ "<all_urls>" ],
     "js": [ "jquery.js", "content.js" ]
   }],
-  "browser_action": {
+  "page_action": {
     "default_icon": "ball.png",
     "default_popup": "popup.html"
   },
   "background": {
     "scripts": ["background.js"]
-  }
+  },
+  "permissions": [
+    "tabs"
+  ]
 }
