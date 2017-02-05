@@ -33,7 +33,7 @@ function speak(utterance) {
   var volume = localStorage['volume'] || 1.0;
   var voice = localStorage['voice'];
   chrome.tts.speak(
-      utterance,
+      "hello class",
       {voiceName: voice,
        rate: parseFloat(rate),
        pitch: parseFloat(pitch),

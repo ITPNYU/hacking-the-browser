@@ -1,7 +1,13 @@
 {
-  "name": "Speak Selection",
-  "version": "1.1",
-  "description": "Speaks the current selection out loud.",
+  "name": "My extension",
+  "version": "1.0",
+  "description": "Hard to describe.",
+  "icons": {
+    "128": "icon128.png"
+  },
+
+  "manifest_version": 2,
+
   "permissions": [
     "<all_urls>",
     "tts",

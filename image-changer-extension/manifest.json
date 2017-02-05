@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "name": "image-changer",
+  "version": "1",
+  "permissions": [
+    "webRequest", "webRequestBlocking", "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["eventPage.js"]
+  }
+}
