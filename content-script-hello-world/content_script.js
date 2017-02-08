@@ -6,5 +6,5 @@
 
 console.log('Hello, world! (from a content script) (version: 1)');
 
-// change all paragraphs to red:
-$('p').css({'color': 'red'});
+// change all paragraphs to light green:
+$('p').css({'background-color': 'lightgreen'});

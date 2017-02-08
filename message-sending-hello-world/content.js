@@ -1,4 +1,4 @@
-console.log('content.js version: 1');
+console.log('message-sending-hello-world content.js version: 1');
 
 // content.js
 chrome.runtime.onMessage.addListener(
