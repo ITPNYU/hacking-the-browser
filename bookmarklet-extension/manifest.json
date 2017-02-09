@@ -1,0 +1,15 @@
+{
+  "name": "Bookmarklet Extension",
+  "manifest_version": 2,
+  "version": "0.1",
+  "browser_action": {
+    "default_title": "Click to make the page red"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
+
