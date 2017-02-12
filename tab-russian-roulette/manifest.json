@@ -1,8 +1,10 @@
 {
   "name": "Tab Russian Roulette",
+  "short_name": "Tab Russian Roulette",
   "manifest_version": 2,
   "version": "0.1",
   "description": "Click the icon and one of your tabs will randomly close",
+  "author": "Cory Forsyth",
 
   "icons": {
     "64": "icon/hand-gun-64.png",
