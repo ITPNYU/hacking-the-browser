@@ -1,0 +1,21 @@
+{
+  "name": "Upper Case Detector",
+  "short_name": "Upper Case Detector",
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Highlights all upper-cased sections of the page",
+  "author": "Cory Forsyth",
+
+  "browser_action": {
+    "default_title": "Upper Case Detector"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "persisent": false
+  }
+}
