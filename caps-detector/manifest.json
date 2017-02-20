@@ -3,11 +3,25 @@
   "short_name": "Upper Case Detector",
   "manifest_version": 2,
   "version": "0.1",
-  "description": "Highlights all upper-cased sections of the page",
+  "description": "Highlights all upper-cased text sections of the page",
   "author": "Cory Forsyth",
+  "icons": {
+    "128": "icon-128.png",
+    "64": "icon-64.png",
+    "48": "icon-48.png",
+    "32": "icon-32.png",
+    "19": "icon-19.png"
+  },
 
   "browser_action": {
-    "default_title": "Upper Case Detector"
+    "default_title": "Upper Case Detector",
+    "default_icon": {
+      "128": "icon-128.png",
+      "48": "icon-48.png",
+      "64": "icon-64.png",
+      "32": "icon-32.png",
+      "19": "icon-19.png"
+    }
   },
 
   "permissions": [

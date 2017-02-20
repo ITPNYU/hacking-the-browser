@@ -1,3 +1,7 @@
+var MINIMUM_LENGTH = 3;
+var HIGHLIGHT_CLASS = '--caps-detector-highlighted';
+var TEXT_REGEX = new RegExp("[a-zA-Z]{" + MINIMUM_LENGTH + ",}");
+
 // Gets all text nodes on the page
 function getTextNodes() {
   var nodes = [];
@@ -15,20 +19,27 @@ function getTextNodes() {
 }
 
 // Filter all text nodes to only ones that appear to have upper-cased text
-function detectAllCapsNodes() {
+function getAllCapsTextNodes() {
   return getTextNodes().filter(isCapsTextNode);
 }
 
 // Detect whether a TextNode only contains upper-case text
 // or is inheriting the css "text-transform: uppercase" property
 function isCapsTextNode(node) {
+  // skip if no text content
   if (!node.textContent) { return false; }
-  if (!node.textContent.match(/[a-zA-Z]/)) { return false; }
+
+  // skip is all whitespace
   if (node.textContent.replace(/\s+/g,'').length === 0) { return false; }
 
+  // skip if not enough alpha chars
+  if (!node.textContent.match(TEXT_REGEX)) { return false; }
+
+  // if the text is upper-case
   if (node.textContent.toUpperCase() === node.textContent) {
     return true;
   } else if (node.parentNode) {
+    // figure if css text-transform is applied
     var parent = node.parentNode;
     var styles = window.getComputedStyle(parent);
     var textTransform = styles.textTransform;
@@ -40,12 +51,12 @@ function isCapsTextNode(node) {
   return false;
 }
 
-// Add a yellow background to the node
+// Add a pulsing background
 function highlight(node) {
   if (node.parentNode) {
-    node.parentNode.style.backgroundColor = 'yellow';
+    node.parentNode.classList.add(HIGHLIGHT_CLASS);
   }
 }
 
-var allCaps = detectAllCapsNodes();
+var allCaps = getAllCapsTextNodes();
 allCaps.forEach(highlight);
