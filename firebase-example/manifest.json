@@ -1,0 +1,13 @@
+{
+  "name": "Firebase example",
+  "version": "1.0",
+  "manifest_version": 2,
+
+  "browser_action": {
+    "default_title": "Click me"
+  },
+
+  "background": {
+    "scripts": ["firebase.js", "background.js"]
+  }
+}
