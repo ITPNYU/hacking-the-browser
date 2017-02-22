@@ -1,0 +1,8 @@
+{
+  "manifest_version": 3,
+  "name": "broken example A (2 bugs)",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_title": "Hello"
+}
