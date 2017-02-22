@@ -1,6 +1,9 @@
-console.log('background!');
+console.log('background for firebase clicks example');
 
 // Initialize Firebase
+// This uses my personal api key for firebase.
+// If you copy and paste this code, remember to create your OWN
+// free firebase app and replace this config with yours.
 var config = {
 	apiKey: "AIzaSyB4cHhG0lhQ_0QBhQX1M9pfHbfN-rx5k7s",
 	authDomain: "extension-backend.firebaseapp.com",
