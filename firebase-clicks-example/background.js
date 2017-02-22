@@ -16,6 +16,8 @@ firebase.initializeApp(config);
 var classId = 'HTB-week-5';
 var classClickRefName = 'class/' + classId + '/clickCount';
 
+// Creates a firebase value watcher.
+// The callback gets called every time the click count changes
 function watchClickCount(callback) {
   var clickCountRef = firebase.database().ref(classClickRefName);
   clickCountRef.on('value', function(snapshot) {
@@ -28,6 +30,8 @@ function watchClickCount(callback) {
   });
 }
 
+// Set up the watcher. Give it a callback that updates the browser
+// badge text whenever the count changes
 watchClickCount(function(value) {
   var countString = '' + value.count;
   chrome.browserAction.setBadgeText({text: countString});
@@ -40,6 +44,8 @@ function resetCount() {
   writeClickCount(0);
 }
 
+// Reads the click count one time.
+// This is used to figure out the current count before incrementing it.
 function readClickCountOnce(callback) {
   var clickCountRef = firebase.database().ref(classClickRefName);
   clickCountRef.once('value').then(function(snapshot) {
