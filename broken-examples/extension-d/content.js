@@ -6,5 +6,6 @@ chrome.runtime.onMessage.addListener(function() {
   }
   $('p').text(text);
 
-  $('img').attr('src', 'malkovich.jpg');
+  var src = chrome.extension.getURL('malkovich.jpg');
+  $('img').attr('src', src);
 });
