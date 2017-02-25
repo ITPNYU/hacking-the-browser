@@ -16,9 +16,9 @@
     "activeTab"
   ],
 
-  "content": [
+  "content_scripts": [
     {
-      "matches": ["<no_urls>"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ]
