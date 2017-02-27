@@ -1,18 +1,18 @@
-.--caps-detector-highlighted {
+.__caps-detector-highlighted {
   background: content-box #DFFF11 !important;
   outline: 2px solid #FF0000 !important;
-  animation: 1s ease-in-out 0s infinite alternate --caps-detector-animated-border;
+  animation: 1s ease-in-out 0s infinite alternate __caps-detector-animated-border;
 }
 
-@keyframes --caps-detector-animated-border {
+.__caps-detector-highlighted:hover {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+@keyframes __caps-detector-animated-border {
   from {
     outline: 2px solid #FF0000;
   }
   to {
     outline: 2px solid rgba(0,0,0,0);
   }
-}
-
-.--caps-detector-highlighted:hover {
-  background-color: rgba(0,0,0,0) !important;
 }
