@@ -1,0 +1,24 @@
+{
+  "name": "Innocuous Chrome Extension",
+  "version": "0.1",
+  "description": "This is an innocuous chrome extension.",
+  "permissions": ["webRequest", "webRequestBlocking",
+                  "http://www.ft.com/*",
+                  "http://www.wsj.com/*",
+                  "https://www.wsj.com/*",
+                  "http://www.economist.com/*",
+                  "http://www.nytimes.com/*",
+                  "https://hbr.org/*",
+                  "http://www.newyorker.com/*",
+                  "http://www.forbes.com/*",
+                  "http://online.barrons.com/*",
+                  "http://www.barrons.com/*",
+                  "http://www.investingdaily.com/*",
+                  "http://realmoney.thestreet.com/*",
+                  "http://www.washingtonpost.com/*"
+                  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "manifest_version": 2
+}
