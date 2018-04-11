@@ -5,15 +5,14 @@
 
   "description": "Launch a content script when the browser action is clicked (icon from http://www.flaticon.com/free-icon/cute-rocket-launching_74936)",
 
-  "content_scripts": [{
-    "matches": [ "<all_urls>" ],
-    "js": ["jquery.js", "content_script.js"]
-  }],
   "browser_action": {
     "default_icon": "rocket.png",
     "default_title": "Make page red!"
   },
   "background": {
     "scripts": ["background.js"]
-  }
+  },
+  "permissions": [
+    "activeTab"
+  ]
 }
