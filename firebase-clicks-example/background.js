@@ -1,73 +1,53 @@
-console.log('background for firebase clicks example');
+console.log("background script for firebase clicks example");
 
 // Initialize Firebase
 // This uses my personal api key for firebase.
 // If you copy and paste this code, remember to create your OWN
 // free firebase app and replace this config with yours.
 var config = {
-	apiKey: "AIzaSyB4cHhG0lhQ_0QBhQX1M9pfHbfN-rx5k7s",
-	authDomain: "extension-backend.firebaseapp.com",
-	databaseURL: "https://extension-backend.firebaseio.com",
-	storageBucket: "extension-backend.appspot.com",
-	messagingSenderId: "778159737395"
+  apiKey: "AIzaSyCfYzOJLCfz3YXfsUAYrPAGjxVVaN1wjhg",
+  authDomain: "htb-week-6.firebaseapp.com",
+  databaseURL: "https://htb-week-6.firebaseio.com",
+  projectId: "htb-week-6",
+  storageBucket: "htb-week-6.appspot.com",
+  messagingSenderId: "1027287116199"
 };
+
+// The "firebase" variable is provided by the "firebase.js" script, which should
+// have been listed in the manifest.json so that it loads before this script.
 firebase.initializeApp(config);
 
-var classId = 'HTB-week-5';
-var classClickRefName = 'class/' + classId + '/clickCount';
+// Learn more about the Firebase JavaScript API
+// at this url: https://firebase.google.com/docs/database/web/read-and-write
 
-// Creates a firebase value watcher.
-// The callback gets called every time the click count changes
-function watchClickCount(callback) {
-  var clickCountRef = firebase.database().ref(classClickRefName);
-  clickCountRef.on('value', function(snapshot) {
-    var value = snapshot.val();
-    if (value === null) {
-      value = { count: 0 };
-    }
-    console.log('watched value:',value);
-    callback(value);
-  });
-}
+// start listening for changes to clickCount, and
+// update the badge whenever the count changes
+console.log("Adding Firebase listener for clickCount");
+var database = firebase.database();
+var ref = database.ref("clickCount");
+ref.on("value", function(snapshot) {
+  var clickCount = snapshot.val();
+  console.log("Value of clickCount changed to:", clickCount);
 
-// Set up the watcher. Give it a callback that updates the browser
-// badge text whenever the count changes
-watchClickCount(function(value) {
-  var countString = '' + value.count;
-  chrome.browserAction.setBadgeText({text: countString});
-  if (value.count > 9999) {
-    resetCount();
-  }
+  // setBadgeText requires a "string" property, not a number,
+  // so convert the clickCount into a string:
+  var clickCountString = "" + clickCount;
+  chrome.browserAction.setBadgeText({ text: clickCountString });
 });
 
-function resetCount() {
-  writeClickCount(0);
-}
-
-// Reads the click count one time.
-// This is used to figure out the current count before incrementing it.
-function readClickCountOnce(callback) {
-  var clickCountRef = firebase.database().ref(classClickRefName);
-  clickCountRef.once('value').then(function(snapshot) {
-    var value = snapshot.val();
-    if (value === null) {
-      value = { count: 0 };
-    }
-    console.log('read value:',value);
-    callback(value);
-  });
-}
-
-function writeClickCount(int) {
-  console.log('setting click count to:',int);
-  var clickCountRef = firebase.database().ref(classClickRefName);
-  clickCountRef.set({count: int});
-}
-
+// Add a click listener for the browser action. Increment
+// the clickCount each time anyone clicks their browser action.
 chrome.browserAction.onClicked.addListener(function() {
-  console.log('clicked');
-  readClickCountOnce(function(value) {
-    console.log('clicked ->',value.count);
-    writeClickCount(value.count + 1);
+  console.log("Clicked browser action");
+
+  var database = firebase.database();
+  var ref = database.ref("clickCount");
+
+  // Read the most-recent clickCount value once...
+  ref.once("value").then(function(snapshot) {
+    var clickCount = snapshot.val();
+
+    // ... and then increment that value
+    ref.set(clickCount + 1);
   });
 });
