@@ -3,15 +3,13 @@
   "manifest_version": 2,
   "version": "0.1",
 
-  "description": "Launch a content script when the browser action is clicked (icon from http://www.flaticon.com/free-icon/photo-camera_25315)",
+  "description":
+    "Take a picture of the current page (icon from http://www.flaticon.com/free-icon/photo-camera_25315)",
 
   "browser_action": {
     "default_icon": "camera.png",
     "default_title": "Snap a pic",
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "<all_urls>",
-    "tabs"
-  ]
+  "permissions": ["<all_urls>", "tabs"]
 }

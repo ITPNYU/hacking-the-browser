@@ -1,14 +1,11 @@
 {
-  "name": "History Watcher",
+  "name": "Http/Https Watcher",
   "manifest_version": 2,
   "version": "0.1",
 
   "description": "Shows percentage of https and http traffic",
 
-  "permissions": [
-    "tabs",
-    "<all_urls>"
-  ],
+  "permissions": ["tabs", "<all_urls>"],
 
   "browser_action": {
     "default_title": "History Watcher"
