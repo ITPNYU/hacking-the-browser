@@ -12,11 +12,26 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
   </head>
   <body>
-    <textarea id="editor" cols="80" rows="30">alert("hello, world!");</textarea>
+    <main>
+      <div id="editor-container">
+        <h1>Bookmaklet Editor</h1>
+        <textarea id="editor" cols="80" rows="30">alert("hello, world!");</textarea>
+      </div>
+      <div id="snippets">
+        <h2>Snippets</h2>
+      </div>
+    </main>
+
     <hr />
-    <a id="bookmarklet">Your Bookmarklet</a>
-    <br />
-    <textarea id="bookmarklet-text-area"></textarea>
+
+    <div id="bookmarklet-container">
+      Your Bookmarklet: <a id="bookmarklet">Bookmarklet</a>. (Click to execute, or drag to bookmarks bar.)
+      <br />
+      JavaScript source (copy/paste to edit bookmarklet by hand):
+      <br />
+      <textarea id="bookmarklet-text-area" rows="5" cols="60"></textarea>
+    </div>
+
     <script src="src/main.js"></script>
   </body>
 </html>
