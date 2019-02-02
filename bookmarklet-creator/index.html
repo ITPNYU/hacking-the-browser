@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Hacking the Browser Bookmarklet Creator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="src/codemirror/codemirror.js"></script>
+    <link rel="stylesheet" href="css/codemirror/codemirror.css" />
+    <link rel="stylesheet" href="css/codemirror/theme/monokai.css" />
+    <script src="src/codemirror/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+  </head>
+  <body>
+    <textarea id="editor" cols="80" rows="30">alert("hello, world!");</textarea>
+    <hr />
+    <a id="bookmarklet">Your Bookmarklet</a>
+    <br />
+    <textarea id="bookmarklet-text-area"></textarea>
+    <script src="src/main.js"></script>
+  </body>
+</html>
