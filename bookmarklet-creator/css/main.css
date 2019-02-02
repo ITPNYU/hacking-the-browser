@@ -7,6 +7,18 @@ main {
   margin-right: 1em;
 }
 
+.bookmarklet-name {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+}
+
+#bookmarklet-name {
+  font-size: 1.2em;
+  padding: 0.25em;
+}
+
+
 #snippets .name {
   font-size: 1.2em;
   margin-bottom: 0.5em;
