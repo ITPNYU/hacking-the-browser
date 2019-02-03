@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/codemirror/theme/monokai.css" />
     <script src="src/codemirror/mode/javascript/javascript.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <main>
@@ -19,6 +20,7 @@
           Name: <input id="bookmarklet-name" value="My Bookmarklet"><br>
         </div>
         <textarea id="editor" cols="80" rows="30">alert("hello, world!");</textarea>
+        <div id="error-container">THERE IS AN ERROR</div>
       </div>
       <div id="snippets">
         <h2>Snippets</h2>
@@ -28,12 +30,16 @@
     <hr />
 
     <div id="bookmarklet-container">
-      Your Bookmarklet: <a id="bookmarklet">Bookmarklet</a>. (Click to execute, or drag to bookmarks bar.)
+      Your Bookmarklet: <a href="#" id="bookmarklet">Bookmarklet</a>. (Click to execute, or drag to bookmarks bar.)
       <br />
       JavaScript source (copy/paste to edit bookmarklet by hand):
       <br />
       <textarea id="bookmarklet-text-area" rows="5" cols="60"></textarea>
     </div>
+
+    <hr />
+
+    <a href="demo.html">Bookmarklet Test Page</a>
 
     <script src="src/main.js"></script>
   </body>

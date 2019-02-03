@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bookmarklet Test Page</title>
+  </head>
+
+  <body translate="no">
+    <h1>Bookmarklet Test Page</h1>
+
+    <h2>The subheader (h2)</h2>
+
+    <p class="first">This is the <b>bold</b> first <i>paragraph</i>.</p>
+
+    <p>
+      Zombie Lorem <b>ipsum</b> reversus ab viral inferno, nam rick grimes malum
+      cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit,
+      morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum
+      mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra
+      adventus resi dentevil vultus comedat cerebella viventium.
+    </p>
+
+    <p id="stuff">
+      A paragraph with some stuff...
+      <button id="loadMore">Get more text...</button>
+      <button id="loadMoreRepeat">Get more text on repeat...</button>
+    </p>
+
+    <button>I'm a button</button>
+
+    <a href="https://google.com">Go to google</a>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script>
+      let loadTimer;
+
+      $(() => {
+        $('#loadMore').click(() => {
+          loadMore();
+        });
+
+        $('#loadMoreRepeat').click(() => {
+          if (loadTimer) {
+            clearTimeout(loadTimer);
+            loadTimer = null;
+            $('#loadMoreRepeat').text('Get more text on repeat...');
+          } else {
+            loadMore(true);
+            $('#loadMoreRepeat').text('Stop getting text');
+          }
+        });
+      });
+
+      function loadMore(repeat) {
+        $.getJSON('//www.randomtext.me/api/lorem/p-1/20-35').then(json => {
+          let p = $(json.text_out);
+          $('#stuff').append(p);
+        });
+        if (repeat) {
+          loadTimer = setTimeout(() => loadMore(true), 2500);
+        }
+      }
+    </script>
+  </body>
+</html>

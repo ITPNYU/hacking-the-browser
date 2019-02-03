@@ -1,5 +1,7 @@
 class BookmarkletCreator {
-  constructor(textArea, { bookmarklet, bookmakletTextArea, bookmarkletName }) {
+  constructor(textArea, { bookmarklet, bookmakletTextArea, bookmarkletName, editorContainer, errorContainer }) {
+    this.errorContainer = errorContainer;
+    this.editorContainer = editorContainer;
     this.bookmarklet = bookmarklet;
     this.bookmakletTextArea = bookmakletTextArea;
     this.bookmarkletName = bookmarkletName;
@@ -13,6 +15,7 @@ class BookmarkletCreator {
   }
 
   update() {
+    this.clearCodeErrors();
     let value = this.prepareValue(this.editor.getValue());
     let name = this.bookmarkletName.value;
     this.bookmarklet.setAttribute('href', value);
@@ -21,7 +24,22 @@ class BookmarkletCreator {
   }
 
   prepareValue(value) {
+    try {
+      value = Babel.transform(value, { presets: ['es2017'], comments:false }).code;
+    } catch(e) {
+      this.handleCodeError(e);
+    }
     return `javascript:(function() { ${value} })()`;
+  }
+
+  handleCodeError(e) {
+    this.editorContainer.classList.add('error');
+    this.errorContainer.innerText = e.message;
+  }
+
+  clearCodeErrors() {
+    this.editorContainer.classList.remove('error');
+    this.errorContainer.innerText = "No errors";
   }
 
   insertSnippet(code) {
@@ -82,6 +100,8 @@ injectJquery(function($) {
 let bookmarklet = document.getElementById('bookmarklet');
 let bookmakletTextArea = document.getElementById('bookmarklet-text-area');
 let bookmarkletName = document.getElementById('bookmarklet-name');
+let editorContainer = document.getElementById('editor-container');
+let errorContainer = document.getElementById('error-container');
 
 bookmakletTextArea.addEventListener('click', () => {
   bookmakletTextArea.select();
@@ -90,7 +110,9 @@ bookmakletTextArea.addEventListener('click', () => {
 let creator = new BookmarkletCreator(document.getElementById('editor'), {
   bookmarklet,
   bookmakletTextArea,
-  bookmarkletName
+  bookmarkletName,
+  editorContainer,
+  errorContainer
 });
 
 addSnippets(creator);

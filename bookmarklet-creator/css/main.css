@@ -7,6 +7,18 @@ main {
   margin-right: 1em;
 }
 
+#editor-container.error {
+  outline: 2px solid red;
+}
+
+#editor-container.error #error-container {
+  background-color: lightpink;
+}
+
+#error-container {
+  min-height: 5em;
+}
+
 .bookmarklet-name {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -41,4 +53,8 @@ main {
 
 #bookmarklet-container {
   font-size: 1.5em;
+}
+
+#bookmarklet {
+  cursor: pointer;
 }
