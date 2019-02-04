@@ -13,13 +13,31 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
+    <div>
+      <h1>Instructions</h1>
+      <p>
+        Open the
+        <a href="demo.html" target="_blank">bookmarklet test page</a> in a new
+        tab. Create bookmarklets using the tool on this page that satisfy the
+        bookmarklet exercises.
+        <br />
+        For help, refer to the class slides or the
+        <a
+          href="https://github.com/ITPNYU/hacking-the-browser/wiki/Bookmarklet-Snippets"
+          >bookmarklet snippets</a
+        >
+        on the class wiki.
+      </p>
+    </div>
     <main>
       <div id="editor-container">
         <h1>Bookmarklet Editor</h1>
-        <div class='bookmarklet-name'>
-          Name: <input id="bookmarklet-name" value="My Bookmarklet"><br>
+        <div class="bookmarklet-name">
+          Name: <input id="bookmarklet-name" value="My Bookmarklet" /><br />
         </div>
-        <textarea id="editor" cols="80" rows="30">alert("hello, world!");</textarea>
+        <textarea id="editor" cols="80" rows="30">
+alert("hello, world!");</textarea
+        >
         <div id="error-container">THERE IS AN ERROR</div>
       </div>
       <div id="snippets">
@@ -30,7 +48,8 @@
     <hr />
 
     <div id="bookmarklet-container">
-      Your Bookmarklet: <a href="#" id="bookmarklet">Bookmarklet</a>. (Click to execute, or drag to bookmarks bar.)
+      Your Bookmarklet: <a href="#" id="bookmarklet">Bookmarklet</a>. (Click to
+      execute, or drag to bookmarks bar.)
       <br />
       JavaScript source (copy/paste to edit bookmarklet by hand):
       <br />
@@ -38,8 +57,6 @@
     </div>
 
     <hr />
-
-    <a href="demo.html">Bookmarklet Test Page</a>
 
     <script src="src/main.js"></script>
   </body>
