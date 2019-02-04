@@ -9,15 +9,34 @@ class BookmarkletCreator {
       theme: 'monokai',
       autofocus: true
     });
+    this.init();
     this.update();
     this.editor.on('change', () => this.update());
     this.bookmarkletName.addEventListener('input', () => this.update());
   }
 
+  init() {
+    let value = window.localStorage.getItem('value');
+    let name = window.localStorage.getItem('name');
+
+    if (value) {
+      this.editor.setValue(value);
+    }
+    if (name) {
+      this.bookmarkletName.value = name;
+    }
+  }
+
   update() {
     this.clearCodeErrors();
-    let value = this.prepareValue(this.editor.getValue());
+    let value = this.editor.getValue();
     let name = this.bookmarkletName.value;
+
+    console.log('setItem value',value);
+    window.localStorage.setItem('value', value);
+    window.localStorage.setItem('name', name);
+
+    value = this.prepareValue(this.editor.getValue());
     this.bookmarklet.setAttribute('href', value);
     this.bookmarklet.innerText = name;
     this.bookmakletTextArea.value = value;
