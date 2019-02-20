@@ -1,12 +1,10 @@
 # Hacking the Browser
 
-~ITP, Spring 2016~
-
-~ITP, Spring 2017~
-
-~ITP, Spring 2018~
-
 ITP, Spring 2019
+
+## Usage
+
+To try out these extensions locally, start by downloading or cloning this repository, then load any one of the extensions' folders into your Chrome. Most of the extensions have their own README that describes their functionality.
 
 ## Links
 
