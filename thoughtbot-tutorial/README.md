@@ -1,6 +1,7 @@
 # Thoughtbot Chrome Extension Tutorial
 
 This is the completed code from the [Thoughtbot Chrome Extension Tutorial](https://thoughtbot.com/blog/how-to-make-a-chrome-extension).
+It uses a newer version of jQuery than specified in the article, but otherwise has the same code from that article.
 
 To load this extension, use the "Load Unpacked" button on the chrome://extensions page. See [this slide](https://docs.google.com/presentation/d/1qN4C0ewDV0uZDzXR4aHv-wBatBjYBY3Somla9ihux7w/edit#slide=id.g3655cdd7e2_0_111) for more details.
 
