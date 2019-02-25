@@ -1,5 +1,15 @@
+/* global CodeMirror, Babel */
 class BookmarkletCreator {
-  constructor(textArea, { bookmarklet, bookmakletTextArea, bookmarkletName, editorContainer, errorContainer }) {
+  constructor(
+    textArea,
+    {
+      bookmarklet,
+      bookmakletTextArea,
+      bookmarkletName,
+      editorContainer,
+      errorContainer
+    }
+  ) {
     this.errorContainer = errorContainer;
     this.editorContainer = editorContainer;
     this.bookmarklet = bookmarklet;
@@ -32,7 +42,6 @@ class BookmarkletCreator {
     let value = this.editor.getValue();
     let name = this.bookmarkletName.value;
 
-    console.log('setItem value',value);
     window.localStorage.setItem('value', value);
     window.localStorage.setItem('name', name);
 
@@ -44,8 +53,9 @@ class BookmarkletCreator {
 
   prepareValue(value) {
     try {
-      value = Babel.transform(value, { presets: ['es2017'], comments:false }).code;
-    } catch(e) {
+      value = Babel.transform(value, { presets: ['es2017'], comments: false })
+        .code;
+    } catch (e) {
       this.handleCodeError(e);
     }
     return `javascript:(function() { ${value} })()`;
@@ -58,7 +68,7 @@ class BookmarkletCreator {
 
   clearCodeErrors() {
     this.editorContainer.classList.remove('error');
-    this.errorContainer.innerText = "No errors";
+    this.errorContainer.innerText = 'No errors';
   }
 
   insertSnippet(code) {
@@ -69,23 +79,23 @@ class BookmarkletCreator {
 function addSnippets(creator) {
   const SNIPPETS = {
     injectJquery: function() {
-function injectJquery(callback) {
-  if (window.jQuery) {
-    return callback(window.jQuery);
-  }
-  let script = document.createElement('script');
-  script.setAttribute(
-    'src',
-    '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
-  );
-  script.onload = () => callback(window.jQuery);
-  script.onerror = e => alert('The script failed to load: ' + e);
-  document.head.appendChild(script);
-}
+      function injectJquery(callback) {
+        if (window.jQuery) {
+          return callback(window.jQuery);
+        }
+        let script = document.createElement('script');
+        script.setAttribute(
+          'src',
+          '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'
+        );
+        script.onload = () => callback(window.jQuery);
+        script.onerror = e => alert('The script failed to load: ' + e);
+        document.head.appendChild(script);
+      }
 
-injectJquery(function($) {
-  // YOUR CODE GOES HERE and can use the $ variable
-});
+      injectJquery(function($) {
+        // YOUR CODE GOES HERE and can use the $ variable
+      });
     }
       .toString()
       .replace('function() {', '')
