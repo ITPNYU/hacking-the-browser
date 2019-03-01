@@ -1,0 +1,10 @@
+{
+  "name": "execute code on activated tab",
+  "version": "0.1",
+  "manifest_version": 2,
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  },
+  "permissions": ["tabs", "<all_urls>"]
+}
