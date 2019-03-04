@@ -46,6 +46,12 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
     // To cancel this request, uncomment the line below
     // return { cancel: true };
 
+    // To cancel requests for facebook, uncomment below
+    // if (details.url.includes('facebook.com')) {
+    //   return {cancel: true};
+    // }
+
+
     // To redirect this request to another URL instead, uncomment the return statement below
     // Note: This works best if you use the details of this request to ensure that only certain
     // specific requests are redirected
