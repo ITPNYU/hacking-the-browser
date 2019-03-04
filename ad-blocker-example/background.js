@@ -33,7 +33,7 @@ function blockAds(details) {
 
   for (var i = 0; i < AD_NETWORK_HOSTS.length; i++) {
     if (host.indexOf(AD_NETWORK_HOSTS[i]) !== -1) {
-      console.log('blocking script',details.url);
+      console.log(`%cblocking script: ${details.url}`, 'color: red; font-weight: bold; background-color: lightpink;');
       return { cancel: true };
     }
   }
