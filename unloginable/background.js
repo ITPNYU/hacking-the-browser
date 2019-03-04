@@ -14,7 +14,9 @@ var filter = {
   urls: ['<all_urls>']
 };
 
-var extraInfo = ['blocking', 'responseHeaders'];
+// As of Chrome v72, the 'extraHeaders' string is required here
+// in order to get access to Set-Cookie header
+var extraInfo = ['blocking', 'responseHeaders', 'extraHeaders'];
 
 chrome.webRequest.onHeadersReceived.addListener(
   callback, filter, extraInfo);
