@@ -14,7 +14,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     // This is a normal array and can be modified like any array (use `push` to add new entries, for example)
     // let requestHeaders = details.requestHeaders;
 
-    // Type: string such as "main_frame" or "script" or "stylesheet" etc
+    // Type: string such as "main_frame" or "script" or "stylesheet", "image", etc.
     // let type = details.type;
 
     // Uncomment the below to log details:
@@ -50,6 +50,14 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
     // Note: This works best if you use the details of this request to ensure that only certain
     // specific requests are redirected
     // return { redirectUrl: 'https://www.google.com' };
+
+    // To redirect *only* "image" type requests to a cat image that is part of this
+    // extension, uncomment below. The `getURL` method will only work if the cat.jpg
+    // is specified in the "web_accessible_resources" part of the manifest.json
+    // if (details.type === 'image') {
+    //   let catURL = chrome.extension.getURL('cat.jpg');
+    //   return { redirectUrl: catURL };
+    // }
   },
 
   // Filters: This filter says to run this callback for all URLs. It can be changed to
