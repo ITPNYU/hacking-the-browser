@@ -45,6 +45,7 @@ function replaceDogImageWithCat(details) {
     // The chrome api chrome.extension.getURL gets the absolute URL
     // to this asset (the URL will look like: chrome-extension://abcdefgh/cat.jpg
     var replacement = chrome.extension.getURL('cat.jpg');
+    console.log(`Replacing request for ${details.url} with cat image: ${replacement}`);
     return { redirectUrl: replacement };
   }
 }
