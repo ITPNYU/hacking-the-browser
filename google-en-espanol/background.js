@@ -14,7 +14,7 @@ var filter = {
   urls: ['<all_urls>']
 };
 
-var extraInfo = ['blocking', 'requestHeaders'];
+var extraInfo = ['blocking', 'requestHeaders', 'extraHeaders'];
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   callback, filter, extraInfo);
