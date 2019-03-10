@@ -1,0 +1,16 @@
+{
+  "name": "test firebase",
+  "version": "0.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_title": "click me"
+  },
+  "background": {
+    "scripts": [
+      "firebase-app.js",
+      "firebase-firestore.js",
+      "firebase-wrapper.js",
+      "background.js"
+    ]
+  }
+}
