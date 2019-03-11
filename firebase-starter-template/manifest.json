@@ -1,5 +1,5 @@
 {
-  "name": "test firebase",
+  "name": "firebase starter template",
   "version": "0.1",
   "manifest_version": 2,
   "browser_action": {
@@ -9,6 +9,7 @@
     "scripts": [
       "firebase-app.js",
       "firebase-firestore.js",
+      "firebase-config.js",
       "firebase-wrapper.js",
       "background.js"
     ]

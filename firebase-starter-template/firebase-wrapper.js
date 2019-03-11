@@ -2,7 +2,7 @@ var _firebaseLogging = true;
 var _db = null;
 var _FIREBASE_COLLECTION = 'data';
 
-window.initializeFirebase = function(config) {
+function initializeFirebase(config) {
   if (!config || !config.apiKey || config.apiKey === 'YOUR_API_KEY') {
     console.error('You must pass a config object to initializeFirebase');
     return;
@@ -23,25 +23,24 @@ window.initializeFirebase = function(config) {
       .doc(key)
       .get()
       .then(val => {
-        log(
-          `getFirebaseData: got key "${key}": "${JSON.stringify(
-            val.data().value
-          )}"`
-        );
-        callback(val.data().value);
+        let data = val.data();
+        let value = data ? data.value : undefined;
+        log(`getFirebaseData: got key "${key}": "${JSON.stringify(value)}"`);
+        callback(value);
       });
   }
 
   function onFirebaseDataChange(key, callback) {
     let ref = _db.collection(_FIREBASE_COLLECTION).doc(key);
-    ref.onSnapshot(v => {
-      v = v.data().value;
+    ref.onSnapshot(val => {
+      let data = val.data();
+      let value = data ? data.value : undefined;
       log(
         `onFirebaseDataChange: value for "${key}" changed to : "${JSON.stringify(
-          v
+          value
         )}"`
       );
-      callback(v);
+      callback(value);
     });
   }
 
@@ -101,4 +100,11 @@ window.initializeFirebase = function(config) {
     getFirebaseData,
     onFirebaseDataChange
   };
-};
+}
+
+let {
+  setFirebaseLogging,
+  setFirebaseData,
+  getFirebaseData,
+  onFirebaseDataChange
+} = initializeFirebase(config);
