@@ -1,6 +1,6 @@
 console.log('omnibox extension version 1');
 
-// This listener is called when the user types the keyword ("itp")
+// This listener is called when the user types the keyword ("color")
 // and then tab, and then some text. The `text` argument to the listener
 // is the text the person wrote.
 // The `suggest` argument is a function that can be used to programmatically
