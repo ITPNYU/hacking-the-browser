@@ -8,15 +8,16 @@ console.log('omnibox extension version 1');
 chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
   console.log('the user typed "' + text + '"');
 
-  var suggestion1 = text + " and some stuff";
-  var suggestion2 = text + " and other stuff";
-
   suggest([
-    {content: suggestion1, description: "some stuff"},
-    {content: suggestion2, description: "some other stuff"}
+    { content: 'red', description: 'make it pop!' },
+    { content: 'green', description: 'make it natural' },
+    { content: 'pink', description: 'make it funky' }
   ]);
 });
 
 chrome.omnibox.onInputEntered.addListener(function(text) {
   console.log('the user entered: "' + text + '"');
+  chrome.tabs.executeScript({
+    code: `document.body.style.backgroundColor = "${text}";`
+  });
 });

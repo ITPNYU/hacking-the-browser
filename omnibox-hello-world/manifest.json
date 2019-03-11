@@ -1,9 +1,0 @@
-{
-  "name": "Omnibox Hello World",
-  "manifest_version": 2,
-  "version": "0.1",
-  "omnibox": {"keyword": "itp"},
-  "background": {
-    "scripts": ["background.js"]
-  }
-}

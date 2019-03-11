@@ -1,0 +1,10 @@
+{
+  "name": "Omnibox Page Colorizer",
+  "manifest_version": 2,
+  "version": "0.1",
+  "omnibox": { "keyword": "color" },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": ["activeTab"]
+}
