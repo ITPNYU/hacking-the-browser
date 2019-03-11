@@ -1,13 +1,5 @@
-// Initialize Firebase
-var config = {
-  apiKey: "AIzaSyCfYzOJLCfz3YXfsUAYrPAGjxVVaN1wjhg",
-  authDomain: "htb-week-6.firebaseapp.com",
-  databaseURL: "https://htb-week-6.firebaseio.com",
-  projectId: "htb-week-6",
-  storageBucket: "htb-week-6.appspot.com",
-  messagingSenderId: "1027287116199"
-};
-firebase.initializeApp(config);
+// To turn OFF logging, uncomment the line below
+// setFirebaseLogging(false);
 
 // This will use chrome.storage.sync and Math.random to either create and set a new
 // userId or read the existing userId from storage.
@@ -16,17 +8,13 @@ firebase.initializeApp(config);
 // If you want to use the same userId every time, uncomment this line:
 // var userId = "my-user-id";
 function getOrCreateUserId(callback) {
-  console.log("getOrCreateUserId");
-  if (userId) {
-    return callback(userId);
-  }
-
-  chrome.storage.sync.get(["userId"], function(results) {
-    var userId = results["userId"];
+  console.log('getOrCreateUserId');
+  chrome.storage.sync.get(['userId'], function(results) {
+    var userId = results['userId'];
     if (userId) {
       callback(userId);
     } else {
-      userId = Math.round(Math.random() * 1000000); // random integer between 0-1M
+      userId = Math.floor(Math.random() * 1000000); // random integer between 0-1M
       chrome.storage.sync.set({ userId: userId }, function() {
         callback(userId);
       });
@@ -67,28 +55,27 @@ function getMetrics(callback) {
 // Saves the metrics with the current timestamp to the current user's id.
 function saveMetrics(metrics) {
   var timestamp = Date.now(); // a unix timestamp like 1524757760592
-  console.log("saving metrics:", metrics, "at timestamp:", timestamp);
+  console.log('saving metrics:', metrics, 'at timestamp:', timestamp);
   getOrCreateUserId(function(userId) {
-    console.log("user id is:", userId);
+    console.log('user id is:', userId);
 
-    var database = firebase.database();
-    var key = "/users/" + userId + "/metrics/" + timestamp;
-    console.log("saving metrics to key:", key);
-    database.ref(key).set(metrics);
+    let dataKey = `user-${userId}`;
+
+    setFirebaseData(dataKey, metrics);
   });
 }
 
 // Create alarms that run every 1, 5 and 60 minutes
 // See https://developer.chrome.com/apps/alarms
-chrome.alarms.create("everyMinute", {
+chrome.alarms.create('everyMinute', {
   when: Date.now() + 10, // <-- adding 10 makes it so that this alarm goes off immediately
   periodInMinutes: 1 // <-- this makes it so the alarm goes off every 1 minute
 });
-chrome.alarms.create("every5Minutes", {
+chrome.alarms.create('every5Minutes', {
   when: Date.now() + 10,
   periodInMinutes: 5
 });
-chrome.alarms.create("every60Minutes", {
+chrome.alarms.create('every60Minutes', {
   when: Date.now() + 10,
   periodInMinutes: 60
 });
@@ -99,15 +86,15 @@ chrome.alarms.create("every60Minutes", {
 // Note that the alarms will continue going off even when all windows are closed.
 chrome.alarms.onAlarm.addListener(function(alarm) {
   console.log(`Brrrrring! Alarm named: "${alarm.name}" just went off`);
-  if (alarm.name === "everyMinute") {
+  if (alarm.name === 'everyMinute') {
     // code that runs every minute -- once everything is working the way you want it to,
     // you might want to move this code to run every 5 or 60 minutes instead.
     getMetrics(function(metrics) {
       saveMetrics(metrics);
     });
-  } else if (alarm.name === "every5Minutes") {
+  } else if (alarm.name === 'every5Minutes') {
     // code that runs every 5 minutes
-  } else if (alarm.name === "every60Minutes") {
+  } else if (alarm.name === 'every60Minutes') {
     // code that runs once an hour
   }
 });

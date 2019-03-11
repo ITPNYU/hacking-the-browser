@@ -1,16 +1,15 @@
 {
   "name": "Firebase Tab Counter",
-  "version": "1.0",
+  "version": "0.1",
   "manifest_version": 2,
-
-  "browser_action": {
-    "default_title": "Click me"
-  },
-
-  "permissions": ["tabs", "storage", "alarms"],
-
   "background": {
-    "scripts": ["firebase.js", "background.js"],
-    "persistent": false
-  }
+    "scripts": [
+      "firebase-app.js",
+      "firebase-firestore.js",
+      "firebase-config.js",
+      "firebase-wrapper.js",
+      "background.js"
+    ]
+  },
+  "permissions": ["tabs", "storage", "alarms"]
 }
