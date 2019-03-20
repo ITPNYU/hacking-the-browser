@@ -2,7 +2,7 @@
 
 Tool for showing a countdown timer.
 
-Deployed to [timer.hackingthebrowser.com].
+Deployed to [timer.hackingthebrowser.com](http://timer.hackingthebrowser.com).
 
 ![timer.gif](./timer.gif)
 
