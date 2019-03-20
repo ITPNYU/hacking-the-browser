@@ -10,5 +10,4 @@ Use parcel: `parcel index.html`
 
 ### Deployment
 
-Build with parcel: `parcel build index.html`
-Cp the CNAME and deploy: `cp CNAME dist/ && cd dist/ && surge . && cd ..`
+`npm run deploy`
