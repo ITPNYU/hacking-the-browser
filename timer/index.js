@@ -71,10 +71,25 @@ class Timer {
   }
 
   updateUI() {
+    this._updateText();
+    this._playSounds();
+    this._updateVisualWarning();
+  }
+
+  _updateVisualWarning() {
+    let remainingSeconds = this.state.remainingSeconds;
+    let warning = '';
+    if (remainingSeconds < 0) {
+      warning = 'urgent';
+    } else if (remainingSeconds < WARNING_BEEP_THRESHOLD) {
+      warning = 'notify';
+    }
+    this.els.timer.dataset['warning'] = warning;
+  }
+
+  _updateText() {
     this.els.timer.innerText = formatMMSS(this.state.remainingSeconds);
     this.els.playPause.innerText = this.state.playing ? 'Pause' : 'Play';
-
-    this._playSounds();
   }
 
   _playSounds() {
