@@ -2,12 +2,21 @@ const DEFAULT_SECONDS = 1 * 60 + 1;
 const WARNING_BEEP_THRESHOLD = 60;
 const INSISTENT_BEEP_THRESHOLD = 45;
 
+function setDefaultSeconds(sec) {
+  window.localStorage['defaultSeconds'] = sec;
+}
+
+function getDefaultSeconds() {
+  let sec = window.localStorage['defaultSeconds'] || DEFAULT_SECONDS;
+  return parseInt(sec, 10);
+}
+
 class Timer {
   static defaultState() {
     return {
       playing: false,
-      totalSeconds: DEFAULT_SECONDS,
-      remainingSeconds: DEFAULT_SECONDS,
+      totalSeconds: getDefaultSeconds(),
+      remainingSeconds: getDefaultSeconds(),
       startTime: null,
       intervalId: null
     };
@@ -31,6 +40,27 @@ class Timer {
   addListeners() {
     this.els.playPause.addEventListener('click', () => this.playPause());
     this.els.reset.addEventListener('click', () => this.reset());
+    this.els.timer.addEventListener('click', () => this.editTime());
+  }
+
+  editTime() {
+    if (this.state.playing) {
+      return;
+    }
+    this.els.timer.innerHTML = '<input id="edit-time" autocomplete="off">';
+    let input = document.getElementById('edit-time');
+    input.focus();
+    input.value = formatMMSS(this.state.remainingSeconds);
+
+    let updateTime = () => {
+      setDefaultSeconds(parseMMSS(input.value));
+      this.reset();
+    };
+    input.addEventListener('blur', updateTime);
+    input.addEventListener(
+      'keydown',
+      ({ key }) => key === 'Enter' && updateTime()
+    );
   }
 
   playPause() {
@@ -167,6 +197,11 @@ class Sound {
   }
 }
 
+function parseMMSS(str) {
+  let [m, s] = str.split(':').map(v => parseInt(v, 10));
+  return m * 60 + s;
+}
+
 let tests = [
   () => assert(formatMMSS(1) === '0:01', '0:01'),
   () => assert(formatMMSS(60) === '1:00', '1:00'),
@@ -174,7 +209,11 @@ let tests = [
   () => assert(formatMMSS(7 * 60 - 1) === '6:59', '6:59'),
   () => assert(formatMMSS(-1) === '-0:01', '-0:01'),
   () => assert(formatMMSS(-60) === '-1:00', '-1:00'),
-  () => assert(formatMMSS(-61) === '-1:01', '-1:01')
+  () => assert(formatMMSS(-61) === '-1:01', '-1:01'),
+
+  () => assert(parseMMSS('7:01') === 7 * 60 + 1, '7:01'),
+  () => assert(parseMMSS('1:01') === 60 + 1, '1:01'),
+  () => assert(parseMMSS('11:01') === 11 * 60 + 1, '1:01')
 ];
 tests.forEach(t => t());
 
