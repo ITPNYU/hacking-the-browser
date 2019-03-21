@@ -29,7 +29,7 @@ class Timer {
       reset: document.getElementById('reset')
     };
     this.state = Timer.defaultState();
-    this.sound = new Sound();
+    this.sound = null;
   }
 
   run() {
@@ -38,9 +38,20 @@ class Timer {
   }
 
   addListeners() {
-    this.els.playPause.addEventListener('click', () => this.playPause());
+    this.els.playPause.addEventListener('click', () => {
+      this.maybeCreateSound();
+      this.playPause();
+    });
     this.els.reset.addEventListener('click', () => this.reset());
     this.els.timer.addEventListener('click', () => this.editTime());
+  }
+
+  // Creating the audio context should happen as a result of user interaction,
+  // so lazily do it here in response to a click
+  maybeCreateSound() {
+    if (!this.sound) {
+      this.sound = new Sound();
+    }
   }
 
   editTime() {
@@ -154,17 +165,28 @@ function assert(bool, message = 'should be true') {
 
 class Sound {
   constructor() {
-    let audioCtx = new AudioContext();
-    this.oscillator = audioCtx.createOscillator();
-    this.oscillator.frequency.value = 300;
-    this.oscillator.start();
-    this.gainNode = audioCtx.createGain();
-    this.gainNode.gain.value = 0;
-    this.oscillator.connect(this.gainNode);
-    this.gainNode.connect(audioCtx.destination);
+    this.enabled = false;
+    try {
+      let AudioContextConstructor =
+        window.AudioContext || window.webkitAudioContext;
+      let audioCtx = new AudioContextConstructor();
+      this.oscillator = audioCtx.createOscillator();
+      this.oscillator.frequency.value = 300;
+      this.oscillator.start();
+      this.gainNode = audioCtx.createGain();
+      this.gainNode.gain.value = 0;
+      this.oscillator.connect(this.gainNode);
+      this.gainNode.connect(audioCtx.destination);
+      this.enabled = true;
+    } catch (e) {
+      alert(`Error starting Audio: ${e}`);
+    }
   }
 
   play(type = 'short', count = 0) {
+    if (!this.enabled) {
+      return;
+    }
     let types = ['short', 'long', 'insistent'];
     if (!types.includes(type)) {
       throw `Wrong play type ${type}`;
