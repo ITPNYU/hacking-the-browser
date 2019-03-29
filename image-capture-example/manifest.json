@@ -11,5 +11,5 @@
     "default_title": "Snap a pic",
     "default_popup": "popup.html"
   },
-  "permissions": ["<all_urls>", "tabs"]
+  "permissions": ["<all_urls>", "tabs","activeTab"]
 }
