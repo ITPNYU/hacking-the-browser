@@ -1,6 +1,6 @@
 # Hacking the Browser
 
-ITP, Spring 2019
+ITP, Spring 2020
 
 ## Usage
 
