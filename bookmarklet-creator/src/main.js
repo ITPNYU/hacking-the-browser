@@ -4,7 +4,8 @@ class BookmarkletCreator {
     textArea,
     {
       bookmarklet,
-      bookmakletTextArea,
+      bookmarkletTextArea,
+      bookmarkletPublishTextArea,
       bookmarkletName,
       editorContainer,
       errorContainer
@@ -13,7 +14,8 @@ class BookmarkletCreator {
     this.errorContainer = errorContainer;
     this.editorContainer = editorContainer;
     this.bookmarklet = bookmarklet;
-    this.bookmakletTextArea = bookmakletTextArea;
+    this.bookmarkletTextArea = bookmarkletTextArea;
+    this.bookmarkletPublishTextArea = bookmarkletPublishTextArea;
     this.bookmarkletName = bookmarkletName;
     this.editor = CodeMirror.fromTextArea(textArea, {
       theme: 'monokai',
@@ -33,7 +35,7 @@ class BookmarkletCreator {
       this.editor.setValue(value);
     }
     if (name) {
-      this.bookmarkletName.value = name;
+      this.bookmarkletName.setAttribute('value', name);
     }
   }
 
@@ -48,7 +50,11 @@ class BookmarkletCreator {
     value = this.prepareValue(this.editor.getValue());
     this.bookmarklet.setAttribute('href', value);
     this.bookmarklet.innerText = name;
-    this.bookmakletTextArea.value = value;
+    this.bookmarkletTextArea.value = value;
+    this.bookmarkletPublishTextArea.value = this.createPublishableBookmarkletHTML(
+      name,
+      value
+    );
   }
 
   prepareValue(value) {
@@ -59,6 +65,14 @@ class BookmarkletCreator {
       this.handleCodeError(e);
     }
     return `javascript:(function() { ${value} })()`;
+  }
+
+  createPublishableBookmarkletHTML(name, javascriptCode) {
+    let link = document.createElement('a');
+    link.setAttribute('title', name);
+    link.setAttribute('href', encodeURI(javascriptCode));
+    link.innerText = name;
+    return link.outerHTML;
   }
 
   handleCodeError(e) {
@@ -127,18 +141,21 @@ function addSnippets(creator) {
 }
 
 let bookmarklet = document.getElementById('bookmarklet');
-let bookmakletTextArea = document.getElementById('bookmarklet-text-area');
+let bookmarkletTextArea = document.getElementById('bookmarklet-text-area');
+let bookmarkletPublishTextArea = document.getElementById(
+  'bookmarklet-publish-text-area'
+);
 let bookmarkletName = document.getElementById('bookmarklet-name');
 let editorContainer = document.getElementById('editor-container');
 let errorContainer = document.getElementById('error-container');
 
-bookmakletTextArea.addEventListener('click', () => {
-  bookmakletTextArea.select();
-});
+let clickToSelectEls = document.querySelectorAll('[data-click-to-select]');
+clickToSelectEls.forEach(el => el.addEventListener('click', () => el.select()));
 
 let creator = new BookmarkletCreator(document.getElementById('editor'), {
   bookmarklet,
-  bookmakletTextArea,
+  bookmarkletTextArea,
+  bookmarkletPublishTextArea,
   bookmarkletName,
   editorContainer,
   errorContainer

@@ -2,6 +2,13 @@ main {
   display: flex;
 }
 
+h1,
+h2,
+p {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+
 #editor-container {
   width: 70%;
   margin-right: 1em;
@@ -30,7 +37,6 @@ main {
   padding: 0.25em;
 }
 
-
 #snippets .name {
   font-size: 1.2em;
   margin-bottom: 0.5em;
@@ -53,6 +59,11 @@ main {
 
 #bookmarklet-container {
   font-size: 1.5em;
+  display: flex;
+}
+
+#bookmarklet-container div + div {
+  margin-left: 4em;
 }
 
 #bookmarklet {
