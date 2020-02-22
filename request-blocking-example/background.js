@@ -20,6 +20,8 @@ function maybeBlockReddit() {
   if (hourOfDay < 12) {
     console.log('Blocking reddit before noon');
     return { cancel: true };
+  } else {
+    console.log('Allowing reddit after noon');
   }
 }
 
@@ -58,7 +60,7 @@ chrome.webRequest.onBeforeRequest.addListener(facebookBlocker, {
 
 // This will run `maybeBlockReddit` for all reddit urls in the main frame
 chrome.webRequest.onBeforeRequest.addListener(maybeBlockReddit, {
-  urls: ['*://*.reddit.com/*'],     //  <-- only run for facebook urls
+  urls: ['*://*.reddit.com/*'],     //  <-- only run for reddit urls
   types: [ 'main_frame' ]           //  <-- only for web requests in the main frame
 }, ['blocking']);                   //  <-- this has to be here so that we can stop the request
 
@@ -66,7 +68,7 @@ chrome.webRequest.onBeforeRequest.addListener(maybeBlockReddit, {
 chrome.webRequest.onBeforeRequest.addListener(inspectRequest, {
   urls: ['<all_urls>'],
   types: ['main_frame']
-}, ['blocking']);
+}, []);
 
 // This will run `redirectBingToGoogle` for all bing urls in the main frame
 chrome.webRequest.onBeforeRequest.addListener(redirectBingToGoogle, {
