@@ -1,13 +1,24 @@
+console.log('Google-en-Español background page');
+
+let requestCount = 0;
+
 function callback(details) {
+  requestCount++;
+  console.group(
+    `Intercepting request #${requestCount}: ${details.method} ${details.url}`
+  );
+
   for (var i = 0; i < details.requestHeaders.length; i++) {
     var header = details.requestHeaders[i];
     if (header.name.toLowerCase() === 'accept-language') {
-      console.log('would have sent header', header.name, header.value);
+      console.log(
+        `Changing accept-language header value from ${header.value} to "es"`
+      );
       header.value = 'es';
-      console.log('changed header', header.name, 'to: "es" instead');
     }
   }
 
+  console.groupEnd();
   return { requestHeaders: details.requestHeaders };
 }
 
