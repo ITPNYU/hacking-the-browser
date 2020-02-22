@@ -1,11 +1,8 @@
 console.log('Google-en-Español background page');
 
-let requestCount = 0;
-
 function callback(details) {
-  requestCount++;
   console.group(
-    `Intercepting request #${requestCount}: ${details.method} ${details.url}`
+    `Intercepting request id ${details.requestId}: ${details.method} ${details.url}`
   );
 
   for (var i = 0; i < details.requestHeaders.length; i++) {
