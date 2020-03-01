@@ -1,5 +1,5 @@
 {
-  "name": "firebase starter template",
+  "name": "firebase clicks counter",
   "version": "0.1",
   "manifest_version": 2,
   "browser_action": {
